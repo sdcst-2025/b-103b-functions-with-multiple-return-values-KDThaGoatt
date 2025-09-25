@@ -10,12 +10,29 @@ Some ideas (you don't have to use them):
 def factors(number):
     # number is an integer value
     # you will likely need to sort the values of your list
+
     answer = []
+
+    for i in range(1, number+1):
+        if number % i == 0:
+            answer.append(i)
+
     return answer
 
 def gcflcm(n1,n2):
-    gcf = -1
-    lcm = -1
+    listn1 = factors(n1)
+    listn2 = factors(n2)
+    
+    commonFactors = listn1.intersection(listn2)
+
+    gcf = commonFactors[-1]
+
+    greater = max(n1,n2)
+    smaller = max(n1,n2)
+    for i in range(greater, n1*n2+1, greater):
+        if i % smaller == 0:
+            lcm = i
+
     return gcf,lcm
 
 assert factors(12) == [1,2,3,4,6,12]
