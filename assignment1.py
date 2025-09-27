@@ -23,15 +23,17 @@ def gcflcm(n1,n2):
     listn1 = factors(n1)
     listn2 = factors(n2)
     
-    commonFactors = listn1.intersection(listn2)
+    commonFactors = set(listn1).intersection(set(listn2))
 
-    gcf = commonFactors[-1]
+    gcf = max(commonFactors)
 
     greater = max(n1,n2)
-    smaller = max(n1,n2)
+    smaller = min(n1,n2)
+
     for i in range(greater, n1*n2+1, greater):
         if i % smaller == 0:
             lcm = i
+            break
 
     return gcf,lcm
 
